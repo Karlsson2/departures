@@ -1,0 +1,56 @@
+.departure-div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header {
+  margin: 0 auto;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+.wrapper {
+  width: 70%;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+}
+div.departure-div > * {
+  width: 25%;
+}
+div.header > * {
+  width: 25%;
+}
+#travel-options {
+  width: 100%;
+}
+
+.departure-div:nth-child(even) {
+  background: #ccc;
+}
+.departure-div:nth-child(odd) {
+  background: #5a5757;
+}
+
+@media (max-width: 768px) {
+  .time-div,
+  .operator-div,
+  .number-div {
+    width: 33% !important;
+  }
+  .direction-div {
+    width: 100% !important;
+  }
+  .departure-div {
+    flex-wrap: wrap;
+  }
+  .header {
+    display: none;
+  }
+  .wrapper {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
