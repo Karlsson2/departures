@@ -1,10 +1,30 @@
-.departure-div {
+*,
+*::before,
+*::after {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  color: #f3f3f3;
+  background: rgb(96, 96, 161);
+  background: linear-gradient(
+    90deg,
+    rgba(96, 96, 161, 1) 0%,
+    rgba(199, 121, 185, 1) 100%
+  );
+}
+.data-wrapper {
+}
+.information-div {
   display: flex;
   justify-content: space-between;
 }
 
 .header {
-  margin: 0 auto;
+  padding-bottom: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -12,12 +32,27 @@
 .wrapper {
   width: 70%;
   margin: 0 auto;
+  padding: 100px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 100px 20px;
+}
+.content-wrapper {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.26);
 }
 
 h1 {
   text-align: center;
+  font-weight: 900;
+  font-size: 3em;
 }
-div.departure-div > * {
+div.information-div > * {
   width: 25%;
 }
 div.header > * {
@@ -27,23 +62,32 @@ div.header > * {
   width: 100%;
 }
 
-.departure-div:nth-child(even) {
-  background: #ccc;
+.information-div:nth-child(even) {
 }
-.departure-div:nth-child(odd) {
-  background: #5a5757;
+.information-div:nth-child(odd) {
+}
+.mobile-menu {
+  display: none;
 }
 
 @media (max-width: 768px) {
+  .information-wrapper-div {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 20px;
+  }
+  .mobile-menu {
+    display: block;
+  }
   .time-div,
   .operator-div,
-  .number-div {
-    width: 33% !important;
-  }
+  .number-div,
   .direction-div {
     width: 100% !important;
   }
-  .departure-div {
+
+  .information-div {
     flex-wrap: wrap;
   }
   .header {

@@ -50,15 +50,21 @@ const displayData = (departures) => {
     const timeDiv = document.createElement("div");
     const operatorDiv = document.createElement("div");
     const directionDiv = document.createElement("div");
-    const wrapperDiv = document.createElement("div");
+    const informationDiv = document.createElement("div");
     const numberDiv = document.createElement("div");
+    const wrapperDiv = document.createElement("div");
+    const mobileMenu = generateMobileMenu();
     operatorDiv.classList.add("operator-div");
     timeDiv.classList.add("time-div");
     directionDiv.classList.add("direction-div");
     numberDiv.classList.add("number-div");
-    wrapperDiv.classList.add("departure-div");
+    informationDiv.classList.add("information-div");
+    wrapperDiv.classList.add("information-wrapper-div");
 
-    let number = departure.ProductAtStop.displayNumber;
+    let number =
+      departure.ProductAtStop.displayNumber == "."
+        ? "-"
+        : departure.ProductAtStop.displayNumber;
     let time = departure.time;
     let direction = departure.direction;
     let operator = departure.ProductAtStop.operator;
@@ -67,12 +73,34 @@ const displayData = (departures) => {
     timeDiv.innerText = time;
     directionDiv.innerText = direction;
 
-    wrapperDiv.appendChild(timeDiv);
-    wrapperDiv.appendChild(numberDiv);
-    wrapperDiv.appendChild(directionDiv);
-    wrapperDiv.appendChild(operatorDiv);
+    informationDiv.appendChild(timeDiv);
+    informationDiv.appendChild(numberDiv);
+    informationDiv.appendChild(directionDiv);
+    informationDiv.appendChild(operatorDiv);
+    wrapperDiv.appendChild(informationDiv);
+    wrapperDiv.appendChild(mobileMenu);
     dataWrapper.appendChild(wrapperDiv);
   });
+};
+
+const generateMobileMenu = () => {
+  const time = document.createElement("div");
+  const operator = document.createElement("div");
+  const direction = document.createElement("div");
+  const number = document.createElement("div");
+  const mobileMenu = document.createElement("div");
+
+  time.innerText = "Tid";
+  number.innerText = "Nummer";
+  operator.innerText = "Operatör";
+  direction.innerText = "Station";
+  mobileMenu.classList.add("mobile-menu");
+
+  mobileMenu.appendChild(time);
+  mobileMenu.appendChild(number);
+  mobileMenu.appendChild(direction);
+  mobileMenu.appendChild(operator);
+  return mobileMenu;
 };
 
 loadButtons();
