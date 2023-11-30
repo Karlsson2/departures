@@ -25,7 +25,7 @@ body {
 .data-wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 30px;
 }
 .information-div {
   display: flex;
@@ -33,7 +33,7 @@ body {
 }
 
 .header {
-  padding-bottom: 20px;
+  padding: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
@@ -48,7 +48,6 @@ body {
   padding: 100px 20px;
 }
 .content-wrapper {
-  padding: 20px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -74,23 +73,10 @@ div.header > * {
 
 .mobile-menu {
   display: none;
+  font-weight: 600;
 }
 
 select {
-  appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  width: 100%;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-  z-index: 1;
-  outline: none;
-}
-.select {
   font-size: 24px;
   font-family: "Inter", "FontAwesome";
   color: #f3f3f3;
@@ -106,28 +92,22 @@ select {
   border: 1px solid rgba(255, 255, 255, 0.26);
 }
 
-.select-wrapper {
-  position: relative;
+.operator-div,
+.operator {
+  padding-left: 20px;
 }
-
-.select-wrapper::before,
-.select-wrapper::after {
-  --size: 1rem;
-  position: absolute;
-  content: "";
-  right: 1rem;
-  pointer-events: none;
+.information-wrapper-div {
+  padding: 20px;
 }
-
-.select-wrapper::before {
-  border-left: var(--size) solid transparent;
-  border-right: var(--size) solid transparent;
-  border-top: var(--size) solid #f3f3f3;
-  top: 36%;
-  z-index: 40;
+.information-wrapper-div:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.17);
 }
 
 @media (max-width: 768px) {
+  .operator-div,
+  .operator {
+    padding-left: 0px;
+  }
   .information-wrapper-div {
     display: flex;
     flex-direction: row-reverse;
@@ -153,5 +133,11 @@ select {
   .wrapper {
     width: 90%;
     margin: 0 auto;
+  }
+  .information-wrapper-div:nth-child(1) {
+    border-radius: 12px 12px 0px 0px;
+  }
+  .information-wrapper-div:nth-child(-1) {
+    border-radius: 0px 0px 12px 12px;
   }
 }
