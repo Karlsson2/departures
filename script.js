@@ -13,10 +13,10 @@ const apiKey = "d0770baf-77eb-4f7d-940e-69631f28f2fc";
 const products = "&products=";
 
 const transportModes = [
-  { mode: "Spårvagn", value: products + "64" },
-  { mode: "Buss", value: products + "128" },
-  { mode: "Tåg", value: products + "22" },
-  { mode: "Flygbus", value: products + "8" },
+  { mode: "&#xe5b4;    Spårvagn", value: products + "64" },
+  { mode: "&#xf207;    Buss", value: products + "128" },
+  { mode: "&#xf238;    Tåg", value: products + "22" },
+  { mode: "&#xe58f;    Flyg/ExpressBuss", value: products + "8" },
 ];
 
 select.addEventListener("change", (event) => {
@@ -26,7 +26,7 @@ select.addEventListener("change", (event) => {
 const loadButtons = () => {
   transportModes.forEach((mode) => {
     const modeOption = document.createElement("option");
-    modeOption.innerText = mode.mode;
+    modeOption.innerHTML = mode.mode;
     modeOption.value = mode.value;
     select.appendChild(modeOption);
   });
