@@ -4,6 +4,8 @@ const trainButton = document.getElementById("train");
 const planeBusButton = document.getElementById("planebus");
 const dataWrapper = document.querySelector(".data-wrapper");
 const select = document.getElementById("travel-options");
+const icon = document.querySelector(".select-icon");
+icon.innerHTML = "&#xf141;";
 
 const baseUrlDepartures =
   "https://api.resrobot.se/v2.1/departureBoard?id=740000002&format=json&accessId=";
@@ -13,14 +15,24 @@ const apiKey = "d0770baf-77eb-4f7d-940e-69631f28f2fc";
 const products = "&products=";
 
 const transportModes = [
-  { mode: "&#xe5b4;    Spårvagn", value: products + "64" },
-  { mode: "&#xf207;    Buss", value: products + "128" },
-  { mode: "&#xf238;    Tåg", value: products + "22" },
-  { mode: "&#xe58f;    Flyg/ExpressBuss", value: products + "8" },
+  { mode: "Spårvagn", value: products + "64", fa: "&#xe5b4;" },
+  { mode: "Buss", value: products + "128", fa: "&#xf207;" },
+  { mode: "Tåg", value: products + "22", fa: "&#xf238;" },
+  { mode: "Flyg/ExpressBuss", value: products + "8", fa: "&#xe58f;" },
 ];
 
 select.addEventListener("change", (event) => {
   fetchDeparturesWithTravelMode(event.target.value);
+  transportModes.forEach((mode) => {
+    console.log(mode);
+    console.log(event.target.value);
+    if (event.target.value == mode.value) {
+      console.log(mode.mode);
+      console.log(event.target.value);
+      icon.innerHTML = mode.fa;
+    }
+  });
+  // check value of select, compare that to transportModes and update the value of icon  to the value of "fa".
 });
 
 const loadButtons = () => {
