@@ -26,7 +26,6 @@ optionButtons[0].classList.add("selected");
 //it will also change the data that is being displayed by taking the value from the select field.
 optionButtons.forEach((button) => {
   button.addEventListener("click", (event) => {
-    event.target.disabled = true;
     optionButtons.forEach((btn) => {
       btn.classList.remove("selected");
     });
@@ -35,10 +34,8 @@ optionButtons.forEach((button) => {
     baseUrl = `https://api.resrobot.se/v2.1/${departOrArrive}?id=740000002&format=json&accessId=`;
     if (select.value != "nothing") {
       fetchWithTravelMode(select.value);
-      event.target.disabled = false;
     } else {
       fetchData();
-      event.target.disabled = false;
     }
   });
 });
