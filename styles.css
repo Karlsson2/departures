@@ -5,12 +5,13 @@
 }
 :root {
   --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
+  --text-color: #f3f3f3;
 }
 body {
   padding: 0px;
   margin: 0px;
   font-family: "Inter", sans-serif;
-  color: #f3f3f3;
+  color: var(--text-color);
   background: rgb(96, 96, 161);
   background: linear-gradient(
     90deg,
@@ -70,9 +71,8 @@ select {
   appearance: none;
   font-size: 24px;
   font-family: "Inter", "FontAwesome";
-  color: #f3f3f3;
   padding: 10px 50px;
-  align-items: center;
+  color: var(--text-color);
   cursor: pointer;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 16px;
@@ -141,7 +141,7 @@ select:focus {
   }
   100% {
     border-color: #f79533;
-  } /* Back to the first color to complete the cycle */
+  }
 }
 
 @media (max-width: 768px) {
