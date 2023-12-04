@@ -95,11 +95,11 @@ select:focus,
   background-image: var(--arrow-icon);
   background-repeat: no-repeat;
   background-position: 99% 50%;
-  border: 1px solid rgba(255, 255, 255, 0.074);
+  border: 1px solid rgba(255, 255, 255, 0.26);
 }
 .selected {
   background: rgb(0 0 0 / 25%) !important;
-  border: 1px solid rgba(255, 255, 255, 0.074);
+  border: 1px solid rgba(255, 255, 255, 0.26);
 }
 
 .select-wrapper {
