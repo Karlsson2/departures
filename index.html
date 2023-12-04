@@ -17,15 +17,23 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <title>Avgångar Göteborg</title>
+    <title>Göteborg Central</title>
   </head>
   <body>
     <div class="main-wrapper">
-      <h1>Avgångar Göteborgs Central</h1>
-      <div class="select-wrapper" id="buttons">
+      <h1>Göteborgs Central</h1>
+      <div class="button-wrapper">
+        <button class="select-button" value="departureBoard" id="departures">
+          Avgångar
+        </button>
+        <button class="select-button" value="arrivalBoard" id="arrivals">
+          Ankomster
+        </button>
+      </div>
+      <div class="select-wrapper">
         <div class="select-icon"></div>
         <select class="select" name="travel-options" id="travel-options">
-          <option value="" selected disabled hidden>Välj ressätt</option>
+          <option value="nothing" selected disabled hidden>Välj ressätt</option>
         </select>
       </div>
       <div class="content-wrapper">

@@ -84,11 +84,24 @@ select {
   background-position: 99% 50%;
   outline: none;
 }
-select:focus {
-  border-width: 1px;
-  border-style: solid;
+select:focus,
+.select-button:focus {
+  outline: 3px solid;
+  outline-offset: -3px;
   animation: colorCycle 5s infinite;
 }
+.select-selected {
+  background: rgb(0 0 0 / 25%);
+  background-image: var(--arrow-icon);
+  background-repeat: no-repeat;
+  background-position: 99% 50%;
+  border: 1px solid rgba(255, 255, 255, 0.074);
+}
+.selected {
+  background: rgb(0 0 0 / 25%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.074);
+}
+
 .select-wrapper {
   position: relative;
 }
@@ -99,6 +112,26 @@ select:focus {
   top: 15px;
   z-index: 4;
   font-size: 20px;
+}
+.button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+}
+.select-button {
+  padding: 15px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.26);
+  width: 50%;
+  font-size: 24px;
+  color: var(--text-color);
+}
+.select-button:hover {
+  cursor: pointer;
 }
 .operator-div,
 .operator {
@@ -116,31 +149,31 @@ select:focus {
 
 @keyframes colorCycle {
   0% {
-    border-color: #f79533;
+    outline-color: #f79533;
   }
   12.5% {
-    border-color: #f37055;
+    outline-color: #f37055;
   }
   25% {
-    border-color: #ef4e7b;
+    outline-color: #ef4e7b;
   }
   37.5% {
-    border-color: #a166ab;
+    outline-color: #a166ab;
   }
   50% {
-    border-color: #5073b8;
+    outline-color: #5073b8;
   }
   62.5% {
-    border-color: #1098ad;
+    outline-color: #1098ad;
   }
   75% {
-    border-color: #07b39b;
+    outline-color: #07b39b;
   }
   87.5% {
-    border-color: #6fba82;
+    outline-color: #6fba82;
   }
   100% {
-    border-color: #f79533;
+    outline-color: #f79533;
   }
 }
 
