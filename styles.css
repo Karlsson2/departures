@@ -3,11 +3,9 @@
 *::after {
   box-sizing: border-box;
 }
-
 :root {
   --arrow-icon: url(https://upload.wikimedia.org/wikipedia/commons/9/9d/Caret_down_font_awesome_whitevariation.svg);
 }
-
 body {
   padding: 0px;
   margin: 0px;
@@ -20,6 +18,11 @@ body {
     rgb(186 155 203) 100%
   );
 }
+h1 {
+  text-align: center;
+  font-weight: 900;
+  font-size: 3em;
+}
 .data-wrapper {
   display: flex;
   flex-direction: column;
@@ -28,21 +31,19 @@ body {
   display: flex;
   justify-content: space-between;
 }
-
 .header {
   padding: 20px;
   font-weight: bold;
   display: flex;
   justify-content: space-between;
 }
-.wrapper {
+.main-wrapper {
   width: 70%;
   margin: 0 auto;
-  padding: 100px 0px;
+  padding: 100px 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;
-  padding: 100px 20px;
 }
 .content-wrapper {
   background: rgba(255, 255, 255, 0.1);
@@ -51,12 +52,6 @@ body {
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   border: 1px solid rgba(255, 255, 255, 0.26);
-}
-
-h1 {
-  text-align: center;
-  font-weight: 900;
-  font-size: 3em;
 }
 div.information-div > * {
   width: 25%;
@@ -67,12 +62,10 @@ div.header > * {
 #travel-options {
   width: 100%;
 }
-
 .mobile-menu {
   display: none;
   font-weight: 600;
 }
-
 select {
   appearance: none;
   font-size: 24px;
@@ -89,8 +82,24 @@ select {
   background-image: var(--arrow-icon);
   background-repeat: no-repeat;
   background-position: 99% 50%;
+  outline: none;
 }
-
+select:focus {
+  border-width: 1px;
+  border-style: solid;
+  animation: colorCycle 5s infinite;
+}
+.select-wrapper {
+  position: relative;
+}
+.select-icon {
+  font-family: "Fontawesome";
+  position: absolute;
+  left: 20px;
+  top: 15px;
+  z-index: 4;
+  font-size: 20px;
+}
 .operator-div,
 .operator {
   padding-left: 20px;
@@ -104,21 +113,41 @@ select {
 .information-wrapper-div:nth-last-child(1) {
   border-radius: 0px 0px 12px 12px;
 }
-.select-wrapper {
-  position: relative;
+
+@keyframes colorCycle {
+  0% {
+    border-color: #f79533;
+  }
+  12.5% {
+    border-color: #f37055;
+  }
+  25% {
+    border-color: #ef4e7b;
+  }
+  37.5% {
+    border-color: #a166ab;
+  }
+  50% {
+    border-color: #5073b8;
+  }
+  62.5% {
+    border-color: #1098ad;
+  }
+  75% {
+    border-color: #07b39b;
+  }
+  87.5% {
+    border-color: #6fba82;
+  }
+  100% {
+    border-color: #f79533;
+  } /* Back to the first color to complete the cycle */
 }
-.select-icon {
-  font-family: "Fontawesome";
-  position: absolute;
-  left: 20px;
-  top: 15px;
-  z-index: 4;
-  font-size: 20px;
-}
+
 @media (max-width: 768px) {
-  .operator-div,
-  .operator {
-    padding-left: 0px;
+  .main-wrapper {
+    width: 90%;
+    margin: 0 auto;
   }
   .information-wrapper-div {
     display: flex;
@@ -126,10 +155,12 @@ select {
     justify-content: flex-end;
     gap: 20px;
   }
-  .mobile-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+  .information-wrapper-div:nth-child(1) {
+    border-radius: 12px 12px 0px 0px;
+  }
+  .operator-div,
+  .operator {
+    padding-left: 0px;
   }
   .time-div,
   .operator-div,
@@ -137,31 +168,25 @@ select {
   .direction-div {
     width: 100% !important;
   }
-
   .information-div {
     flex-wrap: wrap;
   }
   .header {
     display: none;
   }
-  .wrapper {
-    width: 90%;
-    margin: 0 auto;
-  }
-  .information-wrapper-div:nth-child(1) {
-    border-radius: 12px 12px 0px 0px;
+  .mobile-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   select {
     font-size: 16px;
   }
-
+  .select-icon {
+    top: 11px;
+    font-size: 16px;
+  }
   h1 {
     font-size: 2.5em;
-  }
-  .select-icon {
-    left: 20px;
-    top: 11px;
-    z-index: 4;
-    font-size: 16px;
   }
 }

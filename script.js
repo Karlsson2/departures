@@ -1,7 +1,3 @@
-const busButton = document.getElementById("bus");
-const tramButton = document.getElementById("tram");
-const trainButton = document.getElementById("train");
-const planeBusButton = document.getElementById("planebus");
 const dataWrapper = document.querySelector(".data-wrapper");
 const select = document.getElementById("travel-options");
 const icon = document.querySelector(".select-icon");
@@ -21,59 +17,69 @@ const transportModes = [
   { mode: "Flyg/ExpressBuss", value: products + "8", fa: "&#xe58f;" },
 ];
 
+// call the API with the specific travelmodes the user selects,
+// also update the fontawesome icon via JS
 select.addEventListener("change", (event) => {
   fetchDeparturesWithTravelMode(event.target.value);
-  transportModes.forEach((mode) => {
-    console.log(mode);
-    console.log(event.target.value);
-    if (event.target.value == mode.value) {
-      console.log(mode.mode);
-      console.log(event.target.value);
-      icon.innerHTML = mode.fa;
+  transportModes.forEach((transportMode) => {
+    if (event.target.value == transportMode.value) {
+      icon.innerHTML = transportMode.fa;
     }
   });
-  // check value of select, compare that to transportModes and update the value of icon  to the value of "fa".
 });
-
-const loadButtons = () => {
-  transportModes.forEach((mode) => {
+//generate the select menus options
+const loadSelect = () => {
+  transportModes.forEach((transportMode) => {
     const modeOption = document.createElement("option");
-    modeOption.innerHTML = mode.mode;
-    modeOption.value = mode.value;
+    modeOption.innerHTML = transportMode.mode;
+    modeOption.value = transportMode.value;
     select.appendChild(modeOption);
   });
 };
+// function to create elements with a specific class
+const createElementWithClass = (element, className) => {
+  const div = document.createElement(element);
+  div.classList.add(className);
+  return div;
+};
+// generate the mobile menu as it is different to desktop
+const createMobileMenu = () => {
+  const time = document.createElement("div");
+  const operator = document.createElement("div");
+  const direction = document.createElement("div");
+  const number = document.createElement("div");
+  const mobileMenu = document.createElement("div");
 
-const fetchDepartures = async () => {
-  const response = await fetch(baseUrlDepartures + apiKey);
-  const data = await response.json();
-  displayData(data.Departure);
+  time.innerText = "Tid";
+  number.innerText = "Nummer";
+  operator.innerText = "Operatör";
+  direction.innerText = "Station";
+
+  mobileMenu.classList.add("mobile-menu");
+
+  mobileMenu.appendChild(time);
+  mobileMenu.appendChild(number);
+  mobileMenu.appendChild(direction);
+  mobileMenu.appendChild(operator);
+
+  return mobileMenu;
 };
 
-const fetchDeparturesWithTravelMode = async (travelMode) => {
-  const response = await fetch(baseUrlDepartures + apiKey + travelMode);
-  const data = await response.json();
-  displayData(data.Departure);
-};
+// function to display the data, called in the initial data display call (all data)
+// and in the function when a user updates the select.
 
 const displayData = (departures) => {
   dataWrapper.innerHTML = "";
   departures.forEach((departure) => {
-    const timeDiv = document.createElement("div");
-    const operatorDiv = document.createElement("div");
-    const directionDiv = document.createElement("div");
-    const informationDiv = document.createElement("div");
-    const numberDiv = document.createElement("div");
-    const wrapperDiv = document.createElement("div");
-    const mobileMenu = generateMobileMenu();
-    operatorDiv.classList.add("operator-div");
-    timeDiv.classList.add("time-div");
-    directionDiv.classList.add("direction-div");
-    numberDiv.classList.add("number-div");
-    informationDiv.classList.add("information-div");
-    wrapperDiv.classList.add("information-wrapper-div");
+    const timeDiv = createElementWithClass("div", "time-div");
+    const operatorDiv = createElementWithClass("div", "operator-div");
+    const directionDiv = createElementWithClass("div", "direction-div");
+    const informationDiv = createElementWithClass("div", "information-div");
+    const numberDiv = createElementWithClass("div", "number-div");
+    const wrapperDiv = createElementWithClass("div", "information-wrapper-div");
+    const mobileMenu = createMobileMenu();
 
-    let number =
+    const number =
       departure.ProductAtStop.displayNumber == "."
         ? "-"
         : departure.ProductAtStop.displayNumber;
@@ -95,25 +101,19 @@ const displayData = (departures) => {
   });
 };
 
-const generateMobileMenu = () => {
-  const time = document.createElement("div");
-  const operator = document.createElement("div");
-  const direction = document.createElement("div");
-  const number = document.createElement("div");
-  const mobileMenu = document.createElement("div");
-
-  time.innerText = "Tid";
-  number.innerText = "Nummer";
-  operator.innerText = "Operatör";
-  direction.innerText = "Station";
-  mobileMenu.classList.add("mobile-menu");
-
-  mobileMenu.appendChild(time);
-  mobileMenu.appendChild(number);
-  mobileMenu.appendChild(direction);
-  mobileMenu.appendChild(operator);
-  return mobileMenu;
+//initial data call that includes all transport modes from the station
+const fetchDepartures = async () => {
+  const response = await fetch(baseUrlDepartures + apiKey);
+  const data = await response.json();
+  displayData(data.Departure);
 };
 
-loadButtons();
+//data call that only includes the specific transport mode that the user has chosen.
+const fetchDeparturesWithTravelMode = async (transportMode) => {
+  const response = await fetch(baseUrlDepartures + apiKey + transportMode);
+  const data = await response.json();
+  displayData(data.Departure);
+};
+
+loadSelect();
 fetchDepartures();
